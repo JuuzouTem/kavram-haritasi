@@ -1,0 +1,125 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Sayfada scrollbar çıkmasını engellemek için */
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0; /* Biraz daha açık bir arka plan */
+    color: #333;
+    display: flex; /* Ana yapıyı flexbox ile yönetmek için */
+    flex-direction: column; /* Elemanları dikeyde sırala */
+}
+
+.controls {
+    padding: 10px 20px;
+    background-color: #34495e; /* Koyu mavi bir kontrol paneli arka planı */
+    color: white;
+    display: flex;
+    justify-content: space-between; /* Başlık ve butonları ayır */
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    flex-shrink: 0; /* Kontrol panelinin küçülmemesini sağla */
+}
+
+.controls h1 {
+    margin: 0;
+    font-size: 1.5em;
+}
+
+.buttons button {
+    margin-left: 8px;
+    padding: 8px 12px;
+    background-color: #3498db; /* Buton rengi */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.2s ease;
+}
+
+.buttons button:hover {
+    background-color: #2980b9; /* Hover rengi */
+}
+
+.buttons button:active {
+    background-color: #2471a3; /* Active rengi */
+}
+
+
+#jsmind_container {
+    /* width: 100%; */ /* flex-grow bunu gereksiz kılar */
+    /* height: calc(100vh - 70px); */ /* Başlık ve padding yüksekliğini çıkar, ya da flex-grow kullan */
+    flex-grow: 1; /* Kalan tüm dikey alanı kapla */
+    border: none; /* Tam ekranda border gereksiz */
+    background: #ffffff; /* Harita arka planı */
+    /* box-shadow: 0 4px 8px rgba(0,0,0,0.1); Artık gölgeyi kontrol paneline verdik */
+}
+
+/* jsmind düğümleri için ek özelleştirmeler */
+jmnode {
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15) !important;
+    border-radius: 6px !important;
+    padding: 8px 14px !important;
+    font-size: 13px;
+    line-height: 1.4;
+    background-color: #ecf0f1 !important; /* Varsayılan düğüm arka planı */
+    color: #2c3e50 !important; /* Varsayılan düğüm metin rengi */
+    border: 1px solid #bdc3c7 !important; /* Düğüm kenarlığı */
+}
+
+jmnode.selected {
+    background-color: #f1c40f !important; /* Seçili düğüm rengi */
+    color: #333 !important;
+    box-shadow: 0 0 0 2px #f39c12, 0 4px 10px rgba(0,0,0,0.25) !important;
+    border-color: #f39c12 !important;
+}
+
+/* Kök düğüm için farklı stil */
+jmnode[nodeid="root"] {
+    background-color: #2980b9 !important; /* Kök düğüm ana renk */
+    color: white !important;
+    font-size: 16px !important;
+    padding: 12px 18px !important;
+    border-color: #2471a3 !important;
+}
+
+/* Birinci seviye düğümler için stil */
+jmnode[nodeid^="node-1-"], 
+jmnode[nodeid^="node-2-"],
+jmnode[nodeid^="node-3-"],
+jmnode[nodeid^="node-4-"],
+jmnode[nodeid^="node-5-"],
+jmnode[nodeid^="node-6-"],
+jmnode[nodeid^="node-7-"] { /* Temaların numaralarına göre seçiciler */
+    background-color: #16a085 !important; /* Birinci seviye tema rengi */
+    color: white !important;
+    font-size: 14px !important;
+    border-color: #117a65 !important;
+}
+
+/* Temalar için ek sınıflar (script.js'de dinamik olarak eklenecek) */
+#jsmind_container.theme-dark jmnode {
+    background-color: #34495e !important;
+    color: #ecf0f1 !important;
+    border-color: #2c3e50 !important;
+}
+#jsmind_container.theme-dark jmnode.selected {
+    background-color: #f39c12 !important;
+    color: #2c3e50 !important;
+    border-color: #e67e22 !important;
+}
+#jsmind_container.theme-dark jmnode[nodeid="root"] {
+    background-color: #c0392b !important;
+    border-color: #a93226 !important;
+}
+#jsmind_container.theme-dark jmnode[nodeid^="node-"] { /* L1 nodes in dark theme */
+     background-color: #27ae60 !important;
+     border-color: #1e8449 !important;
+}
+#jsmind_container.theme-dark {
+    background-color: #2c3e50; /* Koyu tema için harita arka planı */
+}
+#jsmind_container.theme-dark .jsmind-inner line {
+    stroke: #7f8c8d !important; /* Koyu temada çizgi rengi */
+}
